@@ -6,10 +6,10 @@
             </div>
             <div class="panel-body">
                 <div class="col-xs-6">
-                    <input v-model="quantity" class="form-control" type="text" placeholder="Quantity">
+                    <input v-model.number="quantity" class="form-control" type="number" placeholder="Quantity">
                 </div>
                 <div class="col-xs-6">
-                    <button :disabled="!quantity"  @click="buyItem(stock, quantity)" class="btn btn-success pull-right">Buy</button>
+                    <button :disabled="quantity <= 0 || !Number.isInteger(quantity)"  @click="buyItem(stock, quantity)" class="btn btn-success pull-right">Buy</button>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
     export default {
         data() {
           return {
-              quantity: ''
+              quantity: 0
           }
         },
 
@@ -28,7 +28,7 @@
 
         methods: {
             buyItem(stock, quantity) {
-                console.log(stock, quantity)
+
             }
         }
     }
