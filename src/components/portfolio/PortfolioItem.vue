@@ -6,10 +6,16 @@
             </div>
             <div class="panel-body">
                 <div class="col-xs-6">
-                    <input class="form-control"  type="text" placeholder="Quantity">
+                    <input v-model.number="quantity"
+                           class="form-control"
+                           :class="{ danger: insufficient }"
+                           type="number"
+                           placeholder="Quantity">
                 </div>
                 <div class="col-xs-6">
-                    <button class="btn btn-danger pull-right">Sell</button>
+                    <button :disabled="insufficient || quantity <= 0 || !Number.isInteger(quantity)"
+                            @click="sellStock"
+                            class="btn btn-danger pull-right">{{ insufficient ? 'Not enough stocks' : 'Sell' }}</button>
                 </div>
             </div>
         </div>
@@ -18,11 +24,37 @@
 
 <script>
     export default {
-        props: ['item']
+        data() {
+            return {
+                quantity: 0
+            }
+        },
+
+        computed: {
+            insufficient() {
+                return this.quantity > this.item.quantity;
+            }
+        },
+
+        props: ['item'],
+
+        methods: {
+            sellStock() {
+                let itemId = this.item.id;
+                let quantity = this.quantity;
+                let itemPrice = this.item.price;
+                this.$store.dispatch('portfolio/sellItem', { itemId, quantity, itemPrice })
+
+                this.quantity = 0;
+            }
+        }
     }
 </script>
 
 <style scoped>
+    .danger {
+        border: 1px solid red;
+    }
     span {
         font-size: 12px;
     }

@@ -6,10 +6,16 @@
             </div>
             <div class="panel-body">
                 <div class="col-xs-6">
-                    <input v-model.number="quantity" class="form-control" type="number" placeholder="Quantity">
+                    <input v-model.number="quantity"
+                           class="form-control"
+                           :class="{ danger: insufficient }"
+                           type="number"
+                           placeholder="Quantity">
                 </div>
                 <div class="col-xs-6">
-                    <button :disabled="quantity <= 0 || !Number.isInteger(quantity)"  @click="buyItem(stock, quantity)" class="btn btn-success pull-right">Buy</button>
+                    <button :disabled="insufficient || quantity <= 0 || !Number.isInteger(quantity)"
+                            @click="buyItem(stock, quantity)"
+                            class="btn btn-success pull-right">{{insufficient ? 'Not enough funds' : 'Buy'}} </button>
                 </div>
             </div>
         </div>
@@ -24,20 +30,33 @@
           }
         },
 
+        computed: {
+            funds() {
+                return this.$store.getters['portfolio/getFunds']
+            },
+            insufficient() {
+                return this.funds < this.quantity * this.stock.price;
+            }
+        },
+
         props: ['stock'],
 
         methods: {
             buyItem() {
                 let itemId = this.stock.id;
                 let quantity = this.quantity;
-                let itemPrice = this.itemPrice;
+                let itemPrice = this.stock.price;
                 this.$store.dispatch('portfolio/addItem', { itemId, quantity, itemPrice });
+                this.quantity = 0;
             }
         }
     }
 </script>
 
 <style scoped>
+    .danger {
+        border: 1px solid red;
+    }
     span {
         font-size: 12px;
     }

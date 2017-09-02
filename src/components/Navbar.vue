@@ -18,12 +18,27 @@
                             <li><a href="#">Load Data</a></li>
                         </ul>
                     </li>
-                    <li><a>Funds</a></li>
+                    <li><a>Funds: <strong>{{ funds | currency }}</strong></a></li>
                 </ul>
             </div>
         </div>
     </nav>
 </template>
+
+<script>
+    export default {
+        filters: {
+            currency(value) {
+                return '$' + value;
+            }
+        },
+        computed: {
+            funds() {
+                return this.$store.getters['portfolio/getFunds']
+            }
+        }
+    }
+</script>
 
 <style>
     body {
