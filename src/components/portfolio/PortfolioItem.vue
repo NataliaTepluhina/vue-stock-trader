@@ -1,14 +1,16 @@
 <template>
-    <div class="panel panel-default panel-info">
-        <div class="panel-heading">
-            <h4>BMW <span>(Price: 110 | Quantity: 10)</span></h4>
-        </div>
-        <div class="panel-body">
-            <div class="col-xs-6">
-                <input class="form-control"  type="text" placeholder="Quantity">
+    <div class="col-sm-6 col-md-4">
+        <div class="panel panel-default panel-info">
+            <div class="panel-heading">
+                <h4>{{ item.name }} <span>(Price: {{ item.price }} | Quantity: {{ item.quantity }})</span></h4>
             </div>
-            <div class="col-xs-6">
-                <button class="btn btn-danger pull-right">Sell</button>
+            <div class="panel-body">
+                <div class="col-xs-6">
+                    <input class="form-control"  type="text" placeholder="Quantity">
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-danger pull-right">Sell</button>
+                </div>
             </div>
         </div>
     </div>
@@ -16,7 +18,7 @@
 
 <script>
     export default {
-
+        props: ['item']
     }
 </script>
 

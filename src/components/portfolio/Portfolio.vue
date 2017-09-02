@@ -1,6 +1,6 @@
 <template>
-    <div class="col-sm-6 col-md-4">
-        <portfolio-item></portfolio-item>
+    <div>
+        <portfolio-item v-for="item in portfolio" :item="item"></portfolio-item>
     </div>
 
 </template>
@@ -10,6 +10,11 @@
     export default {
         components: {
             portfolioItem: PortfolioItem
+        },
+        computed: {
+            portfolio() {
+                return this.$store.getters['portfolio/getPortfolio'];
+            }
         }
     }
 </script>

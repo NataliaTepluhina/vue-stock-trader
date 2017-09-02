@@ -28,7 +28,7 @@
 
         methods: {
             buyItem(stock, quantity) {
-
+                this.$store.dispatch('portfolio/addItem', {stock, quantity});
             }
         }
     }
