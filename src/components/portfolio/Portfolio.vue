@@ -1,5 +1,5 @@
 <template>
-    <div class="col-xs-6">
+    <div class="col-sm-6 col-md-4">
         <portfolio-item></portfolio-item>
     </div>
 

@@ -16,6 +16,10 @@
     export default {
         components: {
             appNavbar: Navbar
+        },
+
+        created() {
+            this.$store.dispatch('initStocks');
         }
     }
 </script>

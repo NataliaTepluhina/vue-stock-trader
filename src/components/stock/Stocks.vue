@@ -1,8 +1,7 @@
 <template>
-    <div class="col-xs-6">
-        <stock-item></stock-item>
+    <div>
+        <stock-item v-for="stock in stocks" :stock="stock"></stock-item>
     </div>
-
 </template>
 
 <script>
@@ -10,6 +9,11 @@
     export default {
         components: {
             stockItem: StockItem
+        },
+        computed: {
+            stocks() {
+                return this.$store.getters.getStocks;
+            }
         }
     }
 </script>
