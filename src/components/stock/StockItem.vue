@@ -27,8 +27,11 @@
         props: ['stock'],
 
         methods: {
-            buyItem(stock, quantity) {
-                this.$store.dispatch('portfolio/addItem', {stock, quantity});
+            buyItem() {
+                let itemId = this.stock.id;
+                let quantity = this.quantity;
+                let itemPrice = this.itemPrice;
+                this.$store.dispatch('portfolio/addItem', { itemId, quantity, itemPrice });
             }
         }
     }

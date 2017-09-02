@@ -32,8 +32,5 @@ export default {
             commit('rndStocks');
         },
 
-        buyStock: ({commit}) => {
-
-        }
     }
 }

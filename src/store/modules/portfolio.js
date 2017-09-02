@@ -2,28 +2,23 @@ export default {
     namespaced: true,
 
     state: {
-        portfolio: []
-    },
-
-    getters: {
-        getPortfolio: state => {
-            return state.portfolio;
-        }
+        portfolio: [],
+        funds: 10000
     },
 
     mutations: {
-        addItem: (state, payload) => {
-            if (state.portfolio.filter(e => e.id === payload.stock.id).length > 0) {
-                state.portfolio.forEach(element => {
-                    if (element.id === payload.stock.id) {
-                        element.quantity += payload.quantity;
-                    }
-                })
+        addItem: (state, {itemId, quantity, itemPrice}) => {
+            const record = state.portfolio.find(element => itemId === element.id);
+            if (record) {
+                record.quantity += quantity;
             }
             else {
-                payload.stock.quantity = payload.quantity;
-                state.portfolio.push(payload.stock);
+                state.portfolio.push({
+                    id: itemId,
+                    quantity: quantity
+                })
             }
+            state.funds += itemPrice;
         }
     },
 
@@ -31,5 +26,20 @@ export default {
         addItem: ({commit}, payload) => {
             commit('addItem', payload);
         },
-    }
+    },
+
+
+    getters: {
+        getPortfolio: (state, getters, rootState, rootGetters) => {
+            return state.portfolio.map ( item => {
+                const record = rootState.stocks.stocks.find (element => element.id = item.id);
+                return {
+                    id: item.id,
+                    quantity: item.quantity,
+                    name: record.name,
+                    price: record.price
+                }
+            })
+        }
+    },
 }
