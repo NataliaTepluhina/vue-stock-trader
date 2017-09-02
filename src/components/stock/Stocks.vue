@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <md-layout md-gutter="16">
         <stock-item v-for="stock in stocks" :stock="stock"></stock-item>
-    </div>
+    </md-layout>
 </template>
 
 <script>

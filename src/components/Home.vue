@@ -1,25 +1,23 @@
 <template>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <h1><strong>Trade or View your Portfolio</strong></h1>
-            <p>You may Save & Load your Data</p>
-            <p>Click on 'End Day' to begin a new Day!</p>
-            <h4><strong>Your Funds: $10.000</strong></h4>
-        </div>
+    <div>
+        <p class="md-display-1">Trade or View your Portfolio</p>
+        <p class="md-body-2">You may Save & Load your Data</p>
+        <p class="md-body-2">Click on 'End Day' to begin a new Day!</p>
+        <p class="md-title">Your Funds: {{funds | currency}}</p>
     </div>
 </template>
 
 <script>
     export default {
-
+        filters: {
+            currency(value) {
+                return '$' + value;
+            }
+        },
+        computed: {
+            funds() {
+                return this.$store.getters['portfolio/getFunds']
+            }
+        }
     }
 </script>
-
-<style scoped>
-    h1  {
-        padding-bottom: 20px;
-    }
-    h4 {
-        padding-top: 30px;
-    }
-</style>

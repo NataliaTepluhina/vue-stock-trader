@@ -1,25 +1,30 @@
 <template>
-    <div class="col-sm-6 col-md-4">
-        <div class="panel panel-default panel-info">
-            <div class="panel-heading">
-                <h4>{{ item.name }} <span>(Price: {{ item.price }} | Quantity: {{ item.quantity }})</span></h4>
-            </div>
-            <div class="panel-body">
-                <div class="col-xs-6">
-                    <input v-model.number="quantity"
-                           class="form-control"
-                           :class="{ danger: insufficient }"
-                           type="number"
-                           placeholder="Quantity">
-                </div>
-                <div class="col-xs-6">
-                    <button :disabled="insufficient || quantity <= 0 || !Number.isInteger(quantity)"
-                            @click="sellStock"
-                            class="btn btn-danger pull-right">{{ insufficient ? 'Not enough stocks' : 'Sell' }}</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <md-layout md-flex="33">
+        <md-card class="fullwidth">
+            <md-card-header class="no-gutter">
+                <md-toolbar class="md-warn">
+                    <div class="md-title">
+                        {{ item.name }} <span class="md-body-2">(Price: {{ item.price }} | Quantity: {{ item.quantity }})</span>
+                    </div>
+                </md-toolbar>
+            </md-card-header>
+            <md-card-content>
+                <md-input-container>
+                    <md-input v-model.number="quantity"
+                              class="form-control"
+                              :class="{ danger: insufficient }"
+                              type="number"
+                              placeholder="Quantity"></md-input>
+                </md-input-container>
+            </md-card-content>
+            <md-card-actions>
+                <md-button class="md-raised md-warn"
+                           :disabled="insufficient || quantity <= 0 || !Number.isInteger(quantity)"
+                           @click="sellStock">{{ insufficient ? 'Not enough stocks' : 'Sell' }}
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </md-layout>
 </template>
 
 <script>
@@ -55,7 +60,12 @@
     .danger {
         border: 1px solid red;
     }
-    span {
-        font-size: 12px;
+    .no-gutter {
+        padding: 0;
     }
+    .fullwidth {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
 </style>

@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <md-layout md-gutter="16">
         <portfolio-item v-for="item in portfolio" :item="item"></portfolio-item>
-    </div>
+    </md-layout>
 
 </template>
 

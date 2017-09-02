@@ -1,25 +1,30 @@
 <template>
-    <div  class="col-sm-6 col-md-4">
-        <div class="panel panel-default panel-success">
-            <div class="panel-heading">
-                <h4>{{ stock.name }} <span>(Price: {{ stock.price }})</span></h4>
-            </div>
-            <div class="panel-body">
-                <div class="col-xs-6">
-                    <input v-model.number="quantity"
-                           class="form-control"
-                           :class="{ danger: insufficient }"
-                           type="number"
-                           placeholder="Quantity">
-                </div>
-                <div class="col-xs-6">
-                    <button :disabled="insufficient || quantity <= 0 || !Number.isInteger(quantity)"
-                            @click="buyItem(stock, quantity)"
-                            class="btn btn-success pull-right">{{insufficient ? 'Not enough funds' : 'Buy'}} </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <md-layout md-flex="33">
+        <md-card class="fullwidth">
+            <md-card-header class="no-gutter">
+                <md-toolbar class="md-accent">
+                    <div class="md-title">
+                        {{ stock.name }} <span class="md-body-2">(Price: {{ stock.price }})</span>
+                    </div>
+                </md-toolbar>
+            </md-card-header>
+            <md-card-content>
+                <md-input-container>
+                    <md-input v-model.number="quantity"
+                              class="form-control"
+                              :class="{ danger: insufficient }"
+                              type="number"
+                              placeholder="Quantity"></md-input>
+                </md-input-container>
+            </md-card-content>
+            <md-card-actions>
+                <md-button class="md-raised md-accent"
+                           :disabled="insufficient || quantity <= 0 || !Number.isInteger(quantity)"
+                           @click="buyItem(stock, quantity)">{{insufficient ? 'Not enough funds' : 'Buy'}}
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </md-layout>
 </template>
 
 <script>
@@ -57,7 +62,11 @@
     .danger {
         border: 1px solid red;
     }
-    span {
-        font-size: 12px;
+    .no-gutter {
+        padding: 0;
+    }
+    .fullwidth {
+        width: 100%;
+        margin-bottom: 10px;
     }
 </style>

@@ -1,12 +1,9 @@
 <template>
     <div class="container">
         <app-navbar></app-navbar>
-        <div class="row">
-            <div class="col-xs-12">
-                <router-view></router-view>
-            </div>
-        </div>
-
+        <md-whiteframe md-elevation="3" class="section">
+            <router-view></router-view>
+        </md-whiteframe>
     </div>
 </template>
 
@@ -24,6 +21,13 @@
     }
 </script>
 
-<style>
+<style scoped>
+    .container {
+        width: 1200px;
+        margin: 0 auto;
+    }
 
+    .section {
+        padding: 20px 30px 20px 30px;
+    }
 </style>
