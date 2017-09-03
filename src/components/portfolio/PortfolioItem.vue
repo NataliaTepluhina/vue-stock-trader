@@ -1,5 +1,5 @@
 <template>
-    <md-layout md-flex="33">
+    <md-layout md-flex="33" md-flex-small="50" md-flex-xsmall="100">
         <md-card class="fullwidth">
             <md-card-header class="no-gutter">
                 <md-toolbar class="md-warn">

@@ -30,4 +30,10 @@
     .section {
         padding: 20px 30px 20px 30px;
     }
+
+    @media (max-width: 1199px) {
+        .container {
+            width: 100%;
+        }
+    }
 </style>
