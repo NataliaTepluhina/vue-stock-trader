@@ -1,8 +1,8 @@
 <template>
     <div>
         <p class="md-display-1">Trade or View your Portfolio</p>
-        <p class="md-body-2">You may Save & Load your Data</p>
-        <p class="md-body-2">Click on 'End Day' to begin a new Day!</p>
+        <p class="md-subheading">You may Save & Load your Data</p>
+        <p class="md-subheading">Click on 'End Day' to begin a new Day!</p>
         <p class="md-title">Your Funds: {{funds | currency}}</p>
     </div>
 </template>

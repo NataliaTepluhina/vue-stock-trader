@@ -18,7 +18,7 @@
         <md-layout md-align="end">
             <md-layout md-flex="70">
                 <md-button>
-                    <p class="md-subheading">
+                    <p class="md-subheading" @click="randomizeStocks">
                         End Day
                     </p>
                 </md-button>
@@ -28,8 +28,8 @@
                             <p class="md-subheading">Save & Load</p>
                         </md-button>
                         <md-menu-content>
-                            <md-menu-item>Save Data</md-menu-item>
-                            <md-menu-item>Load Data</md-menu-item>
+                            <md-menu-item @click.native="saveData">Save Data</md-menu-item>
+                            <md-menu-item @click.native="fetchData">Load Data</md-menu-item>
                         </md-menu-content>
                     </md-menu>
                 </md-layout>
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+    import { mapActions } from 'vuex'
     export default {
         filters: {
             currency(value) {
@@ -54,7 +55,53 @@
         computed: {
             funds() {
                 return this.$store.getters['portfolio/getFunds']
+            },
+            stocks() {
+                return this.$store.getters['stocks/getStocks']
+            },
+            portfolio() {
+                return this.$store.getters['portfolio/getShortPortfolio']
             }
+        },
+        methods: {
+            ...mapActions({
+                randomizeStocks: 'stocks/rndStocks',
+                loadStocks: 'stocks/loadStocks',
+                loadPortfolio: 'portfolio/loadPortfolio',
+
+            }),
+            saveData() {
+                this.resource.saveData({
+                    funds: this.funds,
+                    stocks: this.stocks,
+                    portfolio: this.portfolio
+                })
+                .then( response => {
+                    console.log(response);
+                }, error => {
+                    console.log(error);
+                } );
+            },
+
+            fetchData() {
+                this.resource.fetchData()
+                    .then(response => response.json())
+                    .then(data => {
+                        const funds = data.funds;
+                        const portfolio = data.portfolio;
+                        const stocks = data.stocks;
+                        this.loadStocks(stocks);
+                        this.loadPortfolio({portfolio, funds});
+                    })
+            }
+        },
+
+        created() {
+            const customActions = {
+                saveData: { method: 'PUT' },
+                fetchData: { method: 'GET' }
+            };
+            this.resource = this.$resource('data.json', {}, customActions);
         }
     }
 </script>

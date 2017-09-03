@@ -23,14 +23,19 @@ export default {
 
         sellItem: (state, { itemId, quantity, itemPrice }) => {
             const record = state.portfolio.find(element => itemId === element.id);
-            if (quantity <= record.quantity) {
+            if (quantity < record.quantity) {
                 record.quantity -= quantity;
                 state.funds += itemPrice * quantity;
             }
             else {
-                state.portfolio.splice(record, 1);
+                state.portfolio.splice(state.portfolio.indexOf(record), 1);
                 state.funds += itemPrice * quantity;
             }
+        },
+
+        loadPortfolio: (state, data) => {
+            state.portfolio = data.portfolio;
+            state.funds = data.funds;
         }
     },
 
@@ -41,6 +46,10 @@ export default {
 
         sellItem: ({ commit }, payload) => {
             commit('sellItem', payload);
+        },
+
+        loadPortfolio: ({ commit }, data) => {
+            commit('loadPortfolio', data);
         },
     },
 
@@ -56,6 +65,10 @@ export default {
                     price: record.price
                 }
             })
+        },
+
+        getShortPortfolio: (state) => {
+            return state.portfolio;
         },
 
         getFunds: (state) => {
