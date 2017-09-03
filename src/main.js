@@ -32,7 +32,7 @@ Vue.material.setCurrentTheme('about');
 
 const router = new VueRouter({
     routes,
-    mode: 'history',
+    base: '/vue-stock-trader'
 });
 
 new Vue({
