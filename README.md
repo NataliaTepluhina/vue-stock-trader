@@ -1,4 +1,4 @@
-#Stock Trader
+# Stock Trader
 
 Live version can be found [here](http://nataliatepluhina.github.io/vue-stock-trader/index.html).
 
