@@ -23,7 +23,7 @@
             </md-layout>
             <md-layout md-align="end">
                 <md-layout md-flex="70" md-flex-medium="85" md-align="end">
-                    <md-layout md-flex="25" md-hide-small>
+                    <md-layout md-flex="29" md-hide-small>
                         <md-button  @click.native="randomizeStocks">
                             <p class="md-subheading">
                                 End Day
