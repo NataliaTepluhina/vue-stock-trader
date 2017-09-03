@@ -34,7 +34,9 @@ export default {
         },
 
         loadPortfolio: (state, data) => {
-            state.portfolio = data.portfolio;
+            if (data.portfolio) {
+                state.portfolio = data.portfolio;
+            }
             state.funds = data.funds;
         }
     },
