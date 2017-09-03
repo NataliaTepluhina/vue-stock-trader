@@ -1,24 +1,24 @@
 <template>
     <md-toolbar>
         <md-layout md-flex="50">
-            <md-button>
-                <router-link to="/" tag="p" class="md-title">Stock Trader</router-link>
+            <md-button @click.native="$router.push('/')">
+                <p class="md-title">Stock Trader</p>
             </md-button>
             <md-layout md-vertical-align="center">
                 <md-button-toggle md-single class="md-primary">
-                    <md-button>
-                        <router-link to="/portfolio" tag="p" class="md-subheading">Portfolio</router-link>
+                    <md-button @click.native="$router.push('/portfolio')">
+                        <p class="md-subheading">Portfolio</p>
                     </md-button>
-                    <md-button>
-                        <router-link to="/stocks" tag="p" class="md-subheading">Stocks</router-link>
+                    <md-button @click.native="$router.push('/stocks')">
+                        <p class="md-subheading">Stocks</p>
                     </md-button>
                 </md-button-toggle>
             </md-layout>
         </md-layout>
         <md-layout md-align="end">
             <md-layout md-flex="70">
-                <md-button>
-                    <p class="md-subheading" @click="randomizeStocks">
+                <md-button  @click.native="randomizeStocks">
+                    <p class="md-subheading">
                         End Day
                     </p>
                 </md-button>
