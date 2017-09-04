@@ -23,14 +23,12 @@
             </md-layout>
             <md-layout md-align="end">
                 <md-layout md-flex="70" md-flex-medium="85" md-align="end">
-                    <md-layout md-flex="29" md-hide-small>
+                    <md-layout md-flex="70" md-vertical-align="center" md-hide-small>
                         <md-button  @click.native="randomizeStocks">
                             <p class="md-subheading">
                                 End Day
                             </p>
                         </md-button>
-                    </md-layout>
-                    <md-layout md-vertical-align="center" md-hide-small>
                         <md-menu md-align-trigger>
                             <md-button md-menu-trigger>
                                 <p class="md-subheading">Save & Load</p>
@@ -41,7 +39,7 @@
                             </md-menu-content>
                         </md-menu>
                     </md-layout>
-                    <md-layout md-vertical-align="center" md-align="end">
+                    <md-layout md-flex="30" md-vertical-align="center" md-align="end">
                         <md-chip class="md-warn md-subheading large">
                             Funds: {{ funds | currency }}
                         </md-chip>

@@ -10,7 +10,7 @@ You can save and load your current stocks portfolio whenever you want.
 
 Technologies used:
 
-* Vue.js 2.0 
+* Vue.js 2.0 + Vuex
 * Material Design
 * Google Firebase database as backend
 * Webpack
